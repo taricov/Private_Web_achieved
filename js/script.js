@@ -1,7 +1,6 @@
-import Letterize from "https://cdn.skypack.dev/letterizejs@2.0.0";
+import Letterize from "https://cdn.skypack.dev/letterizejs@2.0.0"
 
 $(document).ready(function () {
-
 
     var tl = (trigger, scrub = true, xTimes = false, pinned = false, start, end) => gsap.timeline({
         scrollTrigger: {
@@ -218,7 +217,7 @@ $(document).ready(function () {
 
     // const paras = document.querySelectorAll(".container__panel9_3_para1, .container__panel9_3_para2");
 
-    tl(".container__panel9_1", 1, false, false, "0% 60%", "50% 0%")
+    tl(".container__panel9_2", 1, false, false, "center 20%", "bottom 0%")
         .from(".container__panel9_1_start_analytics", {
             height: 0, ease: Power4.easeOut, delay: 2
         })
@@ -235,14 +234,14 @@ $(document).ready(function () {
 
 
     // ===================== Paragarphs ==========================
-    tl(".container__panel9_3_para1", 1, false, false, "bottom 50%", "50% 40%")
+    tl(".container__panel9_3_para1", 1, false, false, "top -20%", "bottom -100%")
         .from(".container__panel9_3_para1", {
             opacity: 0, y: 80, ease: "power1"
         })
         .to(".container__panel9_3_para1", {
             opacity: 0, ease: "power1", delay: 3
         })
-    tl(".container__panel9_3_para2", 1, false, false, "bottom 50%", "50% 40%")
+    tl(".container__panel9_3_para2", 1, false, false, "top -20%", "bottom -100%")
         .from(".container__panel9_3_para2", {
             opacity: 0, y: 80, ease: "power1"
         })
@@ -253,26 +252,26 @@ $(document).ready(function () {
     // ===================== Metrics ==========================
 
 
-    tl(".container__panel9_3_figures", 1, false, false, "bottom 70%", "50% 40%")
+    tl(".container__panel9_3_figures", 1, false, false, "top -20%", "bottom -100%")
         .from(".container__panel9_3_figures", {
             opacity: 0, y: 80, ease: "power1"
         })
 
-    counters(".analytics_fig1", ".analytics_figs", 4, 0, 0, 50, "none", 1, "0% 50%", "50% 30%", "")
-    counters(".analytics_fig2", ".analytics_figs", 3, 0, 0, 50, "none", 1, "0% 50%", "50% 30%", "")
-    counters(".analytics_fig3", ".analytics_figs", 2, 0, 0, 50, "none", 1, "0% 50%", "50% 30%", "")
-    counters(".analytics_fig4", ".analytics_figs", 7, 0, 0, 50, "none", 1, "0% 50%", "50% 30%", "")
+    counters(".analytics_fig1", ".analytics_figs", 4, 0, 0, 50, "none", 1, "top -20%", "bottom -40%", "")
+    counters(".analytics_fig2", ".analytics_figs", 3, 0, 0, 50, "none", 1, "top -20%", "bottom -40%", "")
+    counters(".analytics_fig3", ".analytics_figs", 2, 0, 0, 50, "none", 1, "top -20%", "bottom -40%", "")
+    counters(".analytics_fig4", ".analytics_figs", 7, 0, 0, 50, "none", 1, "top -20%", "bottom -40%", "")
 
 
 
     // ===================== Metrics ==========================
     let percentage = 41
     $(".pieText").html(percentage + "%")
-    tl(".svg_pie", 1, false, false, "30% 50%", "center 45%")
+    tl(".svg_pie", 1, false, false, "top -20%", "bottom 10%")
         .to(".pie", {
             strokeDashoffset: 635 - (6.35 * percentage), ease: "power1"
         })
-    counters(".pieText", ".svg_pie", percentage, 0, 0, 50, "none", 1, "30% 50%", "center 45%", "")
+    counters(".pieText", ".svg_pie", percentage, 0, 0, 50, "none", 1, "top -20%", "bottom 10%", "")
 
     // ===================== Image hover ==========================
 
@@ -312,7 +311,8 @@ $(document).ready(function () {
 
     // ===================== Switch colors (FIXED ICONS) ==========================
     const cup = $(".cup")
-    const audio = new Audio("../assets/music/aftrican_beat.mp3");
+    // var audio = new Audio("./MusicByREDProductions.ogg");
+    var audio = document.querySelector(".audio_file");
     var fillColor;
     const cups = document.querySelectorAll(".cup")
     cups.forEach((cup) => {
@@ -327,15 +327,20 @@ $(document).ready(function () {
         });
     });
 
-
+    // fetch("./MusicByREDProductions.ogg")
+    //     .then(res => res.url)
+    //     .then(file => new Audio(file))
+    //     .then(audio => {
     $(".audio").click(() => {
         fillColor = $(".cup").css("stroke")
         cup.toggleClass("cup-mod");
 
         if (cup.hasClass('cup-mod')) {
             cup.css("fill", fillColor)
+            $(".music_by").fadeIn().delay(1500).fadeOut()
             audio.play();
-            audio.loop = true;
+            // audio.loop = true;
+            console.log(audio)
 
 
             // })
@@ -343,7 +348,9 @@ $(document).ready(function () {
             cup.css("fill", "none")
             audio.pause();
         }
+        // })
     });
+    // const audioPlay = setTimeout(audioClick, 3000);
 
     // ===================== Audio/When Clicked (FIXED ICONS) ==========================
 
